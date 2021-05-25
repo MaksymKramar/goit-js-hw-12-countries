@@ -31,9 +31,13 @@ refs.inputSearch.addEventListener('input', debounce(onSearch, 500))
 
 
 function onSearch(e) {
+    
     // e.preventDefault();
     const inputValue = refs.inputSearch.value;
-    console.log(API.fetchCountries(inputValue))
+
+    if (inputValue.trim() === '') {
+        return;
+    }
 
     API.fetchCountries(inputValue).then(checkNumLetters).catch(onFetchError);
 }
